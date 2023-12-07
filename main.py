@@ -66,6 +66,12 @@ class MyApp(tk.Frame):
                                                           onvalue=1
                                                           )
 
+        self.submit_button = tk.Button(self,
+                                       text='Submit',
+                                       bg='red',
+                                       fg='white'
+                                       )
+
 
 
         # Attach our widgets to the grid
@@ -89,6 +95,8 @@ class MyApp(tk.Frame):
         self.programming_checkbox_java.grid(row=5, column=1, sticky='w', padx=10)
         self.programming_checkbox_python.grid(row=5, column=2, sticky='w', padx=10)
 
+        self.submit_button.grid(row=6, sticky='w', padx=10, pady=10)
+
         # Describe grid
 
         self.columnconfigure(index=3, weight=1)
@@ -110,5 +118,6 @@ my_app.grid(row=0, column=0, sticky='news')
 root.rowconfigure(index=0, weight=1)
 root.columnconfigure(index=0, weight=1)
 
+root.resizable(width=True, height=False)
 
 root.mainloop()

@@ -15,10 +15,6 @@ class MyApp(tk.Frame):
         self.java_intvar = tk.IntVar(self, value=0)
         self.python_intvar = tk.IntVar(self, value=1)
 
-        # In case want to supply commands
-
-        self.country_combo_cmd = self.country_changed
-
         # Values for our combo
 
         country_list = [
@@ -28,7 +24,7 @@ class MyApp(tk.Frame):
             'USA'
         ]
 
-        # Create all our widgets
+        # Create all our widgets - hopefully the names make it clear what they do!
 
         self.reg_form_title = tk.Label(self, text='Registration Form')
 
@@ -39,15 +35,38 @@ class MyApp(tk.Frame):
         self.email_entry = tk.Entry(self, textvariable=self.email_stringvar)
 
         self.gender_label = tk.Label(self, text='Gender')
-        self.gender_radio_male = tk.Radiobutton(self, text='Male', variable=self.gender_stringvar, value='Male')
-        self.gender_radio_female = tk.Radiobutton(self, text='Female', variable=self.gender_stringvar, value='Female')
+        self.gender_radio_male = tk.Radiobutton(self,
+                                                text='Male',
+                                                variable=self.gender_stringvar,
+                                                value='Male'
+                                                )
+        self.gender_radio_female = tk.Radiobutton(self, text='Female',
+                                                  variable=self.gender_stringvar,
+                                                  value='Female'
+                                                  )
 
         self.country_label = tk.Label(self, text='Country')
-        self.country_combo = ttk.Combobox(self, values=country_list, state='readonly', textvariable=self.country_stringvar)
+        self.country_combo = ttk.Combobox(self,
+                                          values=country_list,
+                                          state='readonly',
+                                          textvariable=self.country_stringvar
+                                          )
 
         self.programming_label = tk.Label(self, text='Programming')
-        self.programming_checkbox_java = tk.Checkbutton(self, text='Java', variable=self.java_intvar, offvalue=0, onvalue=1)
-        self.programming_checkbox_python = tk.Checkbutton(self, text='Python', variable=self.python_intvar, offvalue=0, onvalue=1)
+        self.programming_checkbox_java = tk.Checkbutton(self,
+                                                        text='Java',
+                                                        variable=self.java_intvar,
+                                                        offvalue=0,
+                                                        onvalue=1
+                                                        )
+        self.programming_checkbox_python = tk.Checkbutton(self,
+                                                          text='Python',
+                                                          variable=self.python_intvar,
+                                                          offvalue=0,
+                                                          onvalue=1
+                                                          )
+
+
 
         # Attach our widgets to the grid
 
@@ -76,10 +95,11 @@ class MyApp(tk.Frame):
 
         # Some bindings
 
-        self.country_combo.bind('<<ComboboxSelected>>', self.country_combo_cmd)
+        self.country_combo.bind('<<ComboboxSelected>>', self.country_changed)
 
     def country_changed(self, *args, **kwargs):
         print(self.country_stringvar.get(), args, kwargs)
+
 
 root = tk.Tk()
 
